@@ -1,0 +1,269 @@
+.home-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+}
+
+/* Stunning Hero Section */
+.home-hero {
+  height: 90vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1472141521881-95d0e87e2e39?auto=format&fit=crop&q=80&w=1600');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.hero-content {
+  max-width: 900px;
+  color: white;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.6rem 1.8rem;
+  background: rgba(168, 213, 186, 0.2);
+  color: #a8d5ba;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 213, 186, 0.3);
+}
+
+.hero-content h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 3.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.btn-primary-home {
+  padding: 1.4rem 3.5rem;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 100px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+}
+
+.btn-primary-home:hover {
+  transform: translateY(-5px);
+  background: #218838;
+}
+
+.btn-secondary-home {
+  padding: 1.4rem 3.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
+}
+
+.btn-secondary-home:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Feature Grid */
+.home-features {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.section-header h2 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #2c3e2e;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.3rem;
+  color: #777;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+}
+
+.feature-card-premium {
+  background: white;
+  padding: 3.5rem 2.5rem;
+  border-radius: 40px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.feature-card-premium:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.card-top-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #28a745, #a8d5ba);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card-premium:hover .card-top-glow {
+  opacity: 1;
+}
+
+.card-icon-area {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-subtitle {
+  display: block;
+  font-weight: 700;
+  color: #28a745;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.card-text-area h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.card-text-area p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 2.5rem;
+}
+
+.card-link-text {
+  font-weight: 700;
+  color: #333;
+  font-size: 0.95rem;
+  margin-top: auto;
+}
+
+/* Why Section */
+.why-guide {
+  padding: 6rem 2rem 10rem;
+  background-image: linear-gradient(rgba(44, 62, 46, 0.85), rgba(44, 62, 46, 0.85)), url('../assets/maize_field_1775060203983.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.why-content-glass {
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+}
+
+.why-content-glass h2 {
+  font-size: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  text-align: left;
+}
+
+.why-item strong {
+  display: block;
+  font-size: 1.5rem;
+  color: #a8d5ba;
+  margin-bottom: 1rem;
+}
+
+.why-item p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .hero-content h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+}

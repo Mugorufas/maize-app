@@ -1,0 +1,51 @@
+.sidebar-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.search-box {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.nav-menu {
+  background-color: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  overflow: hidden;
+}
+
+.menu-item {
+  padding: 1.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background-color: #e8e8e8;
+}
+
+.menu-item.active {
+  background-color: #f2f2f2;
+}

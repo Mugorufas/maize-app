@@ -1,0 +1,205 @@
+.pest-guide-container {
+  padding: 4rem 0; /* Full-width header and background */
+  background-image: linear-gradient(rgba(17, 33, 17, 0.6), rgba(17, 33, 17, 0.6)), url('../assets/maize_field_1775060203983.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: calc(100vh - 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.pest-hero {
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 5rem;
+  padding: 0 2rem;
+}
+
+.pest-guide-title {
+  font-size: 3.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.pest-hero-subtitle {
+  font-size: 1.3rem;
+  color: #ff6b6b; /* Alert red-orange */
+  opacity: 1;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* Eye-Catching Staggered Grid with 'Defense' Theme */
+.pest-staggered-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 8rem;
+  padding: 0 2rem;
+}
+
+.pest-card-premium {
+  position: relative;
+  width: 350px;
+  height: 480px;
+  border-radius: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pest-card-premium:hover {
+  transform: translateY(-20px) rotate(1deg);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+}
+
+.pest-card-premium.alert { border: 2px solid rgba(255, 107, 107, 0.4); }
+.pest-card-premium.caution { border: 2px solid rgba(255, 159, 67, 0.4); }
+.pest-card-premium.safe { border: 2px solid rgba(168, 213, 186, 0.4); }
+
+.pest-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) contrast(1.1);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.pest-card-premium:hover .pest-card-img {
+  transform: scale(1.1);
+  filter: brightness(0.7) contrast(1.2);
+}
+
+.pest-card-overlay-defense {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+}
+
+.pest-card-overlay-defense h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.pest-card-overlay-defense p {
+  color: #ccc;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.defense-btn {
+  display: inline-block;
+  color: #ff6b6b; /* Alert red */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: transform 0.3s ease;
+}
+
+.pest-card-premium.caution .defense-btn { color: #ff9f43; }
+.pest-card-premium.safe .defense-btn { color: #a8d5ba; }
+
+/* Detailed Pest Sections */
+.detailed-pest-sections {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 0 2rem;
+  margin-bottom: 4rem;
+}
+
+.pest-detail-glass {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  padding: 4rem;
+  color: white;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+  scroll-margin-top: 100px;
+}
+
+.pest-detail-header {
+  margin-bottom: 3.5rem;
+}
+
+.pest-badge {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.alert-badge { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+.caution-badge { background: rgba(255, 159, 67, 0.2); color: #ff9f43; }
+.safe-badge { background: rgba(168, 213, 186, 0.2); color: #a8d5ba; }
+
+.pest-detail-glass h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pest-qa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.pest-expert-tip {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), transparent);
+  border-left: 5px solid #ff6b6b;
+  padding: 2rem;
+  border-radius: 12px;
+  font-style: italic;
+  font-weight: 600;
+  color: #ff6b6b;
+}
+
+#diseases .pest-expert-tip { border-color: #ff9f43; color: #ff9f43; background: linear-gradient(135deg, rgba(255, 159, 67, 0.1), transparent); }
+#ipm .pest-expert-tip { border-color: #a8d5ba; color: #a8d5ba; background: linear-gradient(135deg, rgba(168, 213, 186, 0.1), transparent); }
+
+@media (max-width: 900px) {
+  .pest-card-premium {
+    width: 100%;
+    height: 400px;
+  }
+  .pest-qa-grid {
+    grid-template-columns: 1fr;
+  }
+  .pest-detail-glass {
+    padding: 2.5rem;
+  }
+  .pest-guide-title {
+    font-size: 2.8rem;
+  }
+}

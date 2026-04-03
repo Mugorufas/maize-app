@@ -1,0 +1,217 @@
+.care-guide-container {
+  padding: 4rem 2rem;
+  background-image: linear-gradient(rgba(17, 33, 17, 0.8), rgba(17, 33, 17, 0.8)), url('../assets/maize_field_1775060203983.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: calc(100vh - 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+.care-hero {
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 5rem;
+}
+
+.care-guide-title {
+  font-size: 3.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.care-hero-subtitle {
+  font-size: 1.3rem;
+  color: #a8d5ba;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Eye-Catching Staggered Grid */
+.care-staggered-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 8rem;
+}
+
+.care-card-premium {
+  position: relative;
+  width: 350px;
+  height: 480px;
+  border-radius: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.care-card-premium:hover {
+  transform: translateY(-20px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.care-card-premium.mint { border: 2px solid rgba(168, 213, 186, 0.3); }
+.care-card-premium.gold { border: 2px solid rgba(255, 215, 0, 0.3); }
+
+.care-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) grayscale(20%);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.care-card-premium:hover .care-card-img {
+  transform: scale(1.1);
+  filter: brightness(0.8) grayscale(0%);
+}
+
+.care-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.care-card-overlay h3 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.care-card-overlay p {
+  color: #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.explore-btn {
+  display: inline-block;
+  color: #a8d5ba;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 0.3s ease;
+}
+
+.care-card-premium.gold .explore-btn { color: #ffd700; }
+
+/* Detailed Care Sections */
+.detailed-care-sections {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.care-detail-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  padding: 4rem;
+  color: white;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  scroll-margin-top: 100px;
+  transition: background 0.3s ease;
+}
+
+.care-detail-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.detail-header {
+  margin-bottom: 3.5rem;
+}
+
+.detail-badge {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: rgba(168, 213, 186, 0.2);
+  color: #a8d5ba;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.gold-badge {
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+}
+
+.care-detail-glass h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.care-qa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.care-qa-item {
+  background: rgba(0,0,0,0.2);
+  padding: 2rem;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.care-qa-item strong {
+  display: block;
+  color: #a8d5ba;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+#fertilizer .care-qa-item strong { color: #ffd700; }
+
+.care-expert-tip {
+  background: linear-gradient(135deg, rgba(168, 213, 186, 0.1), transparent);
+  border-left: 5px solid #a8d5ba;
+  padding: 2rem;
+  border-radius: 12px;
+  font-style: italic;
+  font-weight: 600;
+  color: #a8d5ba;
+}
+
+@media (max-width: 900px) {
+  .care-card-premium {
+    width: 100%;
+    height: 400px;
+  }
+  .care-qa-grid {
+    grid-template-columns: 1fr;
+  }
+  .care-detail-glass {
+    padding: 2.5rem;
+  }
+  .care-guide-title {
+    font-size: 2.8rem;
+  }
+}

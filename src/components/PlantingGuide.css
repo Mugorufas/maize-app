@@ -1,0 +1,151 @@
+.planting-guide-container {
+  padding: 4rem 0; /* Full-width layout */
+  background-image: linear-gradient(rgba(44, 62, 46, 0.65), rgba(44, 62, 46, 0.65)), url('../assets/planting page.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: calc(100vh - 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.planting-guide-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.planting-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 6rem;
+}
+
+.planting-card {
+  position: relative;
+  background-color: #3d4f3d;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.planting-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.card-top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(44, 62, 46, 0.9), transparent);
+  z-index: 2;
+}
+
+.card-title {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 3;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+  max-width: 80%;
+  margin: 0;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.planting-card:hover .card-img {
+  transform: scale(1.1);
+}
+
+/* Detailed Sections Styling */
+.detailed-sections {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.detailed-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  padding: 4rem;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  scroll-margin-top: 100px; /* Offset for header during scroll */
+}
+
+.detailed-card h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2.5rem;
+  color: #a8d5ba; /* Soft mint green */
+  border-bottom: 2px solid rgba(168, 213, 186, 0.2);
+  padding-bottom: 1rem;
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.qa-item {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.qa-item strong {
+  display: block;
+  color: #ffd700; /* Gold for emphasis */
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.full-explanation {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  opacity: 0.9;
+  border-left: 4px solid #a8d5ba;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 992px) {
+  .planting-grid {
+    grid-template-columns: 1fr;
+  }
+  .qa-grid {
+    grid-template-columns: 1fr;
+  }
+  .detailed-card {
+    padding: 2.5rem;
+  }
+}
