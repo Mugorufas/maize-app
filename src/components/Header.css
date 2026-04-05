@@ -33,11 +33,7 @@
   border-radius: 50px;
   backdrop-filter: blur(5px);
 }
-.nav-item {
-  color: var(--text-white);
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-.nav-item:hover { text-decoration: underline; }
+.nav-item { color: var(--text-white); text-decoration: none; font-size: 1.1rem; font-weight: 500; padding: 0.4rem 1rem; border-radius: 50px; transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease; }
+.nav-item:hover { background: rgba(255,255,255,0.15); text-decoration: none; }
+.nav-item.active { background: #fff; color: var(--primary-color); font-weight: 700; transform: scale(1.05); }
 .dropdown .arrow { font-size: 0.8rem; margin-left: 0.2rem; }

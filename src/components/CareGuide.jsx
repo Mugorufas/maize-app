@@ -68,11 +68,11 @@ const CareGuide = () => {
             <h2>How to Master Moisture Control</h2>
           </div>
           <div className="care-qa-grid">
-            <div className="care-qa-item"><strong>When?</strong> The most critical stages are **tasseling and silking**. Moisture stress during these 2-3 weeks can reduce yield by up to 50%.</div>
-            <div className="care-qa-item"><strong>Why?</strong> Maize is highly sensitive to water stress because it relies on turgor pressure for silk elongation and successful pollination.</div>
-            <div className="care-qa-item"><strong>How?</strong> Use drip or furrow irrigation to deliver water directly to the root zone. Avoid overhead irrigation during tasseling to prevent washing away pollen.</div>
-            <div className="care-qa-item"><strong>Where?</strong> Focus water on the effective root zone (about 30-60cm deep) where the plant does 70% of its nutrient/water extraction.</div>
-            <div className="care-qa-item"><strong>Which?</strong> In drier regions, consider drought-tolerant varieties combined with soil mulching to conserve existing moisture.</div>
+            <div className="care-qa-item"><strong>Most Critical Growth Stage</strong> Tasseling and silking are the peak water-demand period. Drought stress here alone can reduce your yield by up to 50%.</div>
+            <div className="care-qa-item"><strong>Why Maize Is Water-Sensitive</strong> Maize relies on turgor pressure for silk elongation and successful pollination, making it highly vulnerable to any water shortage.</div>
+            <div className="care-qa-item"><strong>Recommended Irrigation Method</strong> Drip or furrow irrigation delivers water directly to the root zone. Avoid overhead sprinklers during tasseling to protect pollen viability.</div>
+            <div className="care-qa-item"><strong>Effective Root Zone Depth</strong> Target the 30–60 cm soil depth where the plant performs 70% of its water and nutrient uptake activity.</div>
+            <div className="care-qa-item"><strong>Drought-Proofing Strategy</strong> In dry regions, pair drought-tolerant seed varieties with surface mulching to maximize moisture retention between rains.</div>
           </div>
           <div className="care-expert-tip">
              Professional Tip: Check soil moisture by "balling" soil in your hand. If it crumbles easily, it's time to irrigate.
@@ -85,11 +85,11 @@ const CareGuide = () => {
             <h2>Maximizing Nutrient Efficiency</h2>
           </div>
           <div className="care-qa-grid">
-            <div className="care-qa-item"><strong>Which?</strong> Use a balanced NPK fertilizer (e.g., 20:10:10) at planting and high-nitrogen fertilizers like CAN or Urea for top-dressing.</div>
-            <div className="care-qa-item"><strong>When?</strong> Top-dress when the maize is **knee-high (V6 stage)**, usually 4-6 weeks after emergence. This is when rapid growth begins.</div>
-            <div className="care-qa-item"><strong>Why?</strong> Nitrogen is the primary driver of leaf area and grain protein. Phosphorus is critical for root and cob development.</div>
-            <div className="care-qa-item"><strong>How?</strong> Apply fertilizer in a ring or band 5-10cm from the stem base to avoid burning. Incorporate it into the soil if using Urea to prevent loss to the air.</div>
-            <div className="care-qa-item"><strong>Where?</strong> On slanting plots, apply on the "upper side" of the plant so rain washes nutrients toward the roots, not away.</div>
+            <div className="care-qa-item"><strong>Best Fertilizer at Planting</strong> Use a balanced NPK (e.g., 20:10:10) as a basal dressing and follow with nitrogen-rich CAN or Urea for topdressing during growth.</div>
+            <div className="care-qa-item"><strong>Optimal Topdressing Timing</strong> Apply topdress at the V6 (knee-high) stage, around 4–6 weeks after emergence, when the plant's nutrient demand accelerates sharply.</div>
+            <div className="care-qa-item"><strong>Role of Each Nutrient</strong> Nitrogen drives leaf area and grain protein. Phosphorus establishes strong roots and cob formation. Both must be balanced for top yields.</div>
+            <div className="care-qa-item"><strong>Safe Application Method</strong> Ring or band fertilizer 5–10 cm from the stem base to avoid burning. Always incorporate Urea into moist soil to prevent nitrogen gas loss.</div>
+            <div className="care-qa-item"><strong>Application on Sloped Fields</strong> On inclined plots, apply fertilizer on the uphill side of the plant so rainfall moves nutrients toward the root zone, not away.</div>
           </div>
           <div className="care-expert-tip">
              Professional Tip: Yellowing of lower leaves (V-shaped) usually indicates a Nitrogen deficiency that needs immediate top-dressing.
@@ -102,11 +102,11 @@ const CareGuide = () => {
             <h2>The Fight for Resources</h2>
           </div>
           <div className="care-qa-grid">
-            <div className="care-qa-item"><strong>When?</strong> First weeding should happen within **2-3 weeks of emergence**. Weeds are most damaging when the maize is young and vulnerable.</div>
-            <div className="care-qa-item"><strong>Why?</strong> Weeds like Striga can steal up to 80% of nutrients. They also harbor pests and block sunlight from reaching the crop.</div>
-            <div className="care-qa-item"><strong>How?</strong> Use mechanical hoeing for small plots, or pre-emergence and post-emergence herbicides for larger farms. Be careful not to damage the maize roots.</div>
-            <div className="care-qa-item"><strong>Where?</strong> Ensure the rows are kept completely clean. Once the maize canopy closes (around V10), the shade will naturally suppress new weeds.</div>
-            <div className="care-qa-item"><strong>Which?</strong> For parasitic weeds like Striga, use "Push-Pull" technology or resistant maize varieties to break the cycle.</div>
+            <div className="care-qa-item"><strong>First Weeding Window</strong> Begin weeding within 2–3 weeks of crop emergence when weeds are still small and the maize plants are at their most vulnerable.</div>
+            <div className="care-qa-item"><strong>Yield Loss From Weeds</strong> Striga weed alone can steal up to 80% of soil nutrients. Weeds also shelter pests and block light from reaching the crop canopy.</div>
+            <div className="care-qa-item"><strong>Manual vs. Chemical Control</strong> Use mechanical hoeing on small plots. On larger farms, apply pre- and post-emergence herbicides without disturbing the maize root system.</div>
+            <div className="care-qa-item"><strong>Natural Weed Suppression</strong> Once the canopy closes around the V10 stage, natural shading suppresses further weed germination. Keep rows clean until that point.</div>
+            <div className="care-qa-item"><strong>Managing Parasitic Weeds</strong> For Striga infestations, apply the "Push-Pull" intercropping technique or use Striga-resistant maize varieties to break the cycle.</div>
           </div>
           <div className="care-expert-tip">
              Professional Tip: Avoid weeding during flowering as soil disturbance can disturb the delicate root activity needed for grain fill.

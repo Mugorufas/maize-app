@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
@@ -16,12 +16,12 @@ function Header() {
       <div className="hero-section">
         <h1>Maize Farming Guide</h1>
         <div className="nav-pill">
-          <Link to="/" className="nav-item">Home</Link>
-          <Link to="/planting" className="nav-item">Planting</Link>
-          <Link to="/care" className="nav-item">Care</Link>
-          <Link to="/harvest" className="nav-item">Harvest</Link>
-          <Link to="/pests" className="nav-item">Pests</Link>
-          <Link to="/contact" className="nav-item">Contact</Link>
+          <NavLink to="/" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} end>Home</NavLink>
+          <NavLink to="/planting" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>Planting</NavLink>
+          <NavLink to="/care" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>Care</NavLink>
+          <NavLink to="/harvest" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>Harvest</NavLink>
+          <NavLink to="/pests" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>Pests</NavLink>
+          <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>Contact</NavLink>
         </div>
       </div>
     </div>
