@@ -1,6 +1,7 @@
 .contact-page-container {
-  padding: 4rem 2rem;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/maize_field_1775060203983.png');
+  padding: 5rem 2rem 4rem;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.55)),
+    url('../assets/maize_field_1775060203983.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -11,192 +12,358 @@
   color: white;
 }
 
+/* ---- Hero ---- */
 .contact-hero {
   text-align: center;
-  max-width: 800px;
+  max-width: 700px;
   margin-bottom: 4rem;
 }
 
 .contact-hero h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, #fff, #a8d5ba);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-hero p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  opacity: 0.9;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  opacity: 0.85;
 }
 
+/* ---- Grid ---- */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2.5rem;
   width: 100%;
-  max-width: 1000px;
-  margin-bottom: 4rem;
+  max-width: 1050px;
+  margin-bottom: 3rem;
 }
 
+/* ---- Glass Cards ---- */
 .glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 32px;
-  padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 .glass-card h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
   color: #fff;
 }
 
-.form-group {
+/* ---- Feedback Banner ---- */
+.form-feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  animation: feedbackSlide 0.3s ease;
+}
+@keyframes feedbackSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.form-feedback.success {
+  background: rgba(40,167,69,0.2);
+  border: 1px solid rgba(40,167,69,0.4);
+}
+.form-feedback.error {
+  background: rgba(220,53,69,0.2);
+  border: 1px solid rgba(220,53,69,0.4);
+}
+.form-feedback span { font-size: 1.5rem; flex-shrink: 0; }
+.form-feedback strong { display: block; margin-bottom: 0.2rem; color: #fff; }
+.form-feedback p { opacity: 0.8; margin: 0; }
+.form-feedback a { color: #a8d5ba; }
+
+/* ---- Form Layout ---- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.45rem;
   opacity: 0.8;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.92);
+  color: #222;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #a8d5ba;
+  box-shadow: 0 0 0 3px rgba(168,213,186,0.25);
+}
+
+.form-group.has-error input,
+.form-group.has-error textarea {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255,107,107,0.2);
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #ff9a9a;
+  margin-top: 0.3rem;
+}
+
+.form-group textarea {
+  height: 130px;
+  resize: vertical;
+}
+
+/* ---- Submit Button ---- */
+.submit-btn {
   width: 100%;
   padding: 1rem;
   border-radius: 12px;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  font-size: 1rem;
-}
-
-.form-group textarea {
-  height: 120px;
-  resize: vertical;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 1.2rem;
-  border-radius: 12px;
-  border: none;
-  background: #28a745;
+  background: linear-gradient(135deg, #4b7837, #2d4a2d);
   color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  letter-spacing: 0.3px;
+  margin-top: 0.5rem;
 }
 
-.submit-btn:hover {
-  background: #218838;
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(75,120,55,0.4);
 }
 
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Contact Info Items ---- */
 .info-item {
   display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s ease;
 }
 
-.info-item .icon {
-  font-size: 1.5rem;
+.info-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
+.info-link:hover {
+  background: rgba(168,213,186,0.12);
+  border-color: rgba(168,213,186,0.3);
+}
+
+.info-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+.info-item strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
+  margin-bottom: 0.15rem;
+}
+
+.info-item p { margin: 0; font-size: 0.95rem; }
+
+.info-arrow { margin-left: auto; opacity: 0.4; font-size: 1.1rem; }
+
+/* ---- WhatsApp Button ---- */
 .whatsapp-btn {
   width: 100%;
-  padding: 1.5rem;
-  border-radius: 20px;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
   border: none;
   background: #25d366;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
+  font-family: 'Inter', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.7rem;
   cursor: pointer;
-  margin-top: 2rem;
-  transition: transform 0.2s ease;
+  margin-top: 1.2rem;
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
 }
 
 .whatsapp-btn:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+  background: #20ba5a;
 }
 
+/* ---- Social Pills ---- */
+.social-row {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+.social-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.social-pill:hover {
+  background: rgba(168,213,186,0.2);
+  border-color: rgba(168,213,186,0.4);
+  transform: translateY(-2px);
+}
+
+/* ---- Location Card ---- */
 .location-card {
   display: flex;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 24px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1050px;
   overflow: hidden;
-  color: #333;
-  margin-bottom: 4rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  min-height: 320px;
 }
 
 .location-info {
-  flex: 1;
-  padding: 3rem;
+  flex: 0 0 300px;
+  padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
+  gap: 0.6rem;
 }
 
-.location-pin {
-  font-size: 3rem;
+.location-info h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0.2rem;
+}
+
+.location-info p { margin: 0; line-height: 1.5; }
+
+.location-pin { font-size: 2.5rem; }
+
+.map-open-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(168,213,186,0.15);
+  border: 1px solid rgba(168,213,186,0.4);
+  border-radius: 50px;
+  color: #a8d5ba;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+}
+
+.map-open-btn:hover {
+  background: rgba(168,213,186,0.3);
+  transform: translateY(-2px);
 }
 
 .location-map {
-  flex: 1.2;
+  flex: 1;
+  min-height: 320px;
 }
 
-.location-map img {
+.location-map iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  display: block;
 }
 
-.social-links {
-  display: flex;
-  gap: 2rem;
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-hero h1 { font-size: 2.5rem; }
 }
 
-.social-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: background 0.3s ease;
-}
-
-.social-icon:hover {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-@media (max-width: 850px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  .location-card {
-    flex-direction: column;
-  }
-  .location-map {
-    height: 300px;
-  }
+@media (max-width: 700px) {
+  .location-card { flex-direction: column; }
+  .location-info { flex: none; }
+  .location-map { min-height: 260px; }
 }
