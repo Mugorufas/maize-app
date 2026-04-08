@@ -33,6 +33,13 @@ const RESOURCES = {
     subtitle: 'Estimate your maize harvest before planting',
     render: () => <YieldCalculator />,
   },
+  weather: {
+    id: 'weather',
+    icon: '🌤️',
+    title: 'Weather Guide',
+    subtitle: 'Climate conditions and optimal planting windows',
+    render: () => <WeatherContent />,
+  },
 };
 
 /* ============================================================
@@ -406,3 +413,221 @@ function YieldCalculator() {
     </div>
   );
 }
+
+/* ============================================================
+   WEATHER GUIDE CONTENT
+   ============================================================ */
+const WEATHER_CODES = {
+  0: { label: 'Clear sky', icon: '☀️' },
+  1: { label: 'Mainly clear', icon: '🌤️' },
+  2: { label: 'Partly cloudy', icon: '⛅' },
+  3: { label: 'Overcast', icon: '☁️' },
+  45: { label: 'Fog', icon: '🌫️' },
+  48: { label: 'Depositing rime fog', icon: '🌫️' },
+  51: { label: 'Light drizzle', icon: '🌦️' },
+  53: { label: 'Moderate drizzle', icon: '🌦️' },
+  55: { label: 'Dense drizzle', icon: '🌦️' },
+  56: { label: 'Light freezing drizzle', icon: '🌧️' },
+  57: { label: 'Dense freezing drizzle', icon: '🌧️' },
+  61: { label: 'Slight rain', icon: '🌧️' },
+  63: { label: 'Moderate rain', icon: '🌧️' },
+  65: { label: 'Heavy rain', icon: '🌧️' },
+  66: { label: 'Light freezing rain', icon: '🌧️' },
+  67: { label: 'Heavy freezing rain', icon: '🌧️' },
+  71: { label: 'Slight snow fall', icon: '🌨️' },
+  73: { label: 'Moderate snow fall', icon: '🌨️' },
+  75: { label: 'Heavy snow fall', icon: '🌨️' },
+  77: { label: 'Snow grains', icon: '🌨️' },
+  80: { label: 'Slight rain showers', icon: '🌧️' },
+  81: { label: 'Moderate rain showers', icon: '🌧️' },
+  82: { label: 'Violent rain showers', icon: '🌧️' },
+  85: { label: 'Slight snow showers', icon: '🌨️' },
+  86: { label: 'Heavy snow showers', icon: '🌨️' },
+  95: { label: 'Thunderstorm', icon: '⛈️' },
+  96: { label: 'Thunderstorm & hail', icon: '⛈️' },
+  99: { label: 'Heavy thunderstorm & hail', icon: '⛈️' },
+};
+
+function WeatherContent() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [weather, setWeather] = useState(null);
+  const [locationName, setLocationName] = useState('Locating...');
+
+  useEffect(() => {
+    // Attempt geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchWeather(position.coords.latitude, position.coords.longitude);
+        },
+        (err) => {
+          console.warn("Geolocation failed, using default (Nairobi):", err);
+          fetchWeather(-1.2921, 36.8219); // Nairobi fallback
+        }
+      );
+    } else {
+      fetchWeather(-1.2921, 36.8219); // Nairobi fallback
+    }
+
+    async function fetchWeather(lat, lon) {
+      try {
+        setLoading(true);
+        // Try to get location name
+        try {
+          const locRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+          if (locRes.ok) {
+            const locData = await locRes.json();
+            const city = locData.address.city || locData.address.town || locData.address.village || locData.address.county || 'Your Location';
+            const country = locData.address.country || 'Kenya';
+            setLocationName(`${city}, ${country}`);
+          } else {
+            setLocationName('Your Location');
+          }
+        } catch (e) {
+          setLocationName('Your Location');
+        }
+
+        // Fetch weather from open-meteo
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,weathercode,precipitation_probability&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=7&timezone=auto`);
+        
+        if (!res.ok) throw new Error('Failed to fetch weather data');
+        const data = await res.json();
+        
+        setWeather(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="rm-weather-loading">
+        <div className="rm-weather-spinner"></div>
+        <p>Fetching local weather...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="rm-weather-error">
+        <p>⚠️ {error}</p>
+        <button onClick={() => window.location.reload()} className="rm-calc-btn">Try Again</button>
+      </div>
+    );
+  }
+
+  if (!weather || !weather.current_weather) return null;
+
+  const current = weather.current_weather;
+  const currentCode = WEATHER_CODES[current.weathercode] || { label: 'Unknown', icon: '🌡️' };
+  
+  const daily = weather.daily;
+  const hourly = weather.hourly;
+
+  // 1. Dynamic Background based on current weather
+  let bgGradient = 'linear-gradient(to bottom right, #2ab1e6, #1461bd)'; // Default clear
+  if ([0, 1].includes(current.weathercode)) bgGradient = 'linear-gradient(to bottom right, #f59e0b, #ea580c)'; // Sunny/Warm
+  if ([2, 3].includes(current.weathercode)) bgGradient = 'linear-gradient(to bottom right, #94a3b8, #475569)'; // Cloudy
+  if ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(current.weathercode)) bgGradient = 'linear-gradient(to bottom right, #64748b, #1e293b)'; // Rainy
+  if ([95,96,99].includes(current.weathercode)) bgGradient = 'linear-gradient(to bottom right, #334155, #0f172a)'; // Thunderstorm
+
+  // 2. Safe to Plant logic (check next 3 days average rain probability)
+  const next3DaysPrecip = daily.precipitation_probability_max ? daily.precipitation_probability_max.slice(0, 3) : [0,0,0];
+  const avgPrecip = next3DaysPrecip.reduce((a,b)=>a+b, 0) / 3;
+  const isSafeToPlant = avgPrecip >= 50;
+
+  // 3. Hourly Forecast (next 24 hours)
+  const now = new Date();
+  const hourlyStartIndex = hourly.time.findIndex(t => new Date(t) >= now);
+  const next24Hours = hourlyStartIndex !== -1 ? hourly.time.slice(hourlyStartIndex, hourlyStartIndex + 24) : [];
+
+  // Format dates e.g. "Mon, 12"
+  const formatDateDay = (dateStr) => {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', { weekday: 'short' });
+  };
+  
+  return (
+    <div className="rm-weather-widget">
+      <div className="rm-weather-header" style={{ background: bgGradient }}>
+        
+        {/* Smart Planting Indicator */}
+        <div style={{ marginBottom: '1.2rem' }}>
+          {isSafeToPlant ? (
+            <span className="rm-badge" style={{ background: 'rgba(34, 197, 94, 0.25)', color: '#fff', border: '1px solid rgba(255,255,255,0.4)', padding: '5px 12px' }}>
+               ✅ Safe to Plant (Good Rain Expected)
+            </span>
+          ) : (
+            <span className="rm-badge" style={{ background: 'rgba(239, 68, 68, 0.25)', color: '#fff', border: '1px solid rgba(255,255,255,0.4)', padding: '5px 12px' }}>
+               🛑 Wait for Rain (Dry Spell Ahead)
+            </span>
+          )}
+        </div>
+
+        <div className="rm-wh-top">
+          <h3>📍 {locationName}</h3>
+          <span className="rm-wh-status">{currentCode.label}</span>
+        </div>
+        <div className="rm-wh-main">
+          <div className="rm-wh-icon animated-weather-icon">{currentCode.icon}</div>
+          <div className="rm-wh-temp">{Math.round(current.temperature)}°</div>
+        </div>
+
+        {/* 24 Hour Forecast Carousel */}
+        {next24Hours.length > 0 && (
+          <div className="rm-hourly-container">
+            {next24Hours.map((time, i) => {
+              const idx = hourlyStartIndex + i;
+              const hCode = WEATHER_CODES[hourly.weathercode[idx]] || { icon: '🌡️' };
+              const hTemp = Math.round(hourly.temperature_2m[idx]);
+              const hTime = new Date(time).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
+              return (
+                <div key={time} className="rm-hourly-item">
+                  <span className="rm-hi-time">{i === 0 ? 'Now' : hTime.replace(' AM', 'am').replace(' PM', 'pm')}</span>
+                  <span className="rm-hi-icon">{hCode.icon}</span>
+                  <span className="rm-hi-temp">{hTemp}°</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      
+      <p className="rm-section-title">📅 7-Day Forecast</p>
+      <div className="rm-weather-forecast">
+        {daily.time.map((time, idx) => {
+          const code = WEATHER_CODES[daily.weathercode[idx]] || { label: 'Unknown', icon: '🌡️' };
+          const minT = Math.round(daily.temperature_2m_min[idx]);
+          const maxT = Math.round(daily.temperature_2m_max[idx]);
+          const precip = daily.precipitation_probability_max ? daily.precipitation_probability_max[idx] : 0;
+          
+          return (
+            <div key={time} className="rm-forecast-day">
+              <span className="rm-fd-day" title={time}>{idx === 0 ? 'Today' : formatDateDay(time)}</span>
+              <span className="rm-fd-icon" title={code.label}>{code.icon}</span>
+              <span className="rm-fd-precip">{precip > 0 ? `${precip}%💧` : ''}</span>
+              <div className="rm-fd-temps">
+                <span className="rm-fd-min">{minT}°</span>
+                <div className="rm-fd-bar">
+                  <div className="rm-fd-bar-fill" style={{ width: `${Math.min(100, (maxT - minT) * 10)}%`, marginLeft: 'auto', marginRight: 'auto' }}></div>
+                </div>
+                <span className="rm-fd-max">{maxT}°</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div className="rm-tip" style={{ marginTop: '1.2rem' }}>
+        <strong>💡 Farming Tip</strong>
+        Always wait for consistent rain probability (over 60% for a few consecutive days) before sowing seeds to ensure proper germination without irrigation.
+      </div>
+    </div>
+  );
+}
+

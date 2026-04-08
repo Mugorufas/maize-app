@@ -73,6 +73,11 @@ function Footer() {
                   🧮 Yield Calculator
                 </a>
               </li>
+              <li>
+                <a href="#weather" onClick={openResource('weather')}>
+                  🌤️ Weather Forecast
+                </a>
+              </li>
             </ul>
           </div>
 

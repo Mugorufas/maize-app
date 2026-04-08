@@ -29,7 +29,7 @@ const ContactPage = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   }
 
-  /* ---------- Submit → mailto fallback (works without a backend) ---------- */
+  /* ---------- Submit → background sending via FormSubmit ---------- */
   async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate();
@@ -37,22 +37,33 @@ const ContactPage = () => {
 
     setStatus('sending');
 
-    /* Build a mailto: link as a zero-dependency way to open the user's email client.
-       For a real server-based solution, swap this with an EmailJS / Formspree call. */
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    const subject = encodeURIComponent(form.subject);
-    const mailto = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-
     try {
-      window.location.href = mailto;
-      // Give the email client time to open, then show success
-      setTimeout(() => {
+      // FormSubmit.co is a zero-config backend for forms.
+      // The first time a message is sent, you will receive an activation email at ndabarufas@gmail.com
+      // Once activated, all subsequent messages will be delivered directly to your inbox.
+      const response = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `New Message: ${form.subject}`, // FormSubmit special subject field
+          _replyto: form.email, // Allows you to hit 'Reply' directly to the sender's email
+          name: form.name,
+          email: form.email,
+          message: form.message
+        })
+      });
+
+      if (response.ok) {
         setStatus('success');
         setForm({ name: '', email: '', subject: '', message: '' });
-      }, 800);
-    } catch {
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      console.error(error);
       setStatus('error');
     }
   }
@@ -86,7 +97,7 @@ const ContactPage = () => {
               <span>✅</span>
               <div>
                 <strong>Message sent!</strong>
-                <p>Your email client should have opened. We'll reply within 24 hours.</p>
+                <p>Thanks for reaching out! We'll reply to your email within 24 hours.</p>
               </div>
             </div>
           )}
