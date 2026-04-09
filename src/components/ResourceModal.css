@@ -295,6 +295,63 @@
   background: #fff;
 }
 
+/* ---- Dark Mode Overrides for Resource Modal ---- */
+[data-theme='dark'] .resource-modal-body {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+[data-theme='dark'] .rm-card {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+[data-theme='dark'] .rm-card h4 {
+  color: #fff;
+}
+
+[data-theme='dark'] .rm-card p {
+  color: #aaa;
+}
+
+[data-theme='dark'] .rm-table {
+  background: #1e1e1e;
+}
+
+[data-theme='dark'] .rm-table tbody td {
+  color: #ccc;
+}
+
+[data-theme='dark'] .rm-table tbody tr {
+  border-bottom-color: #333;
+}
+
+[data-theme='dark'] .rm-table tbody tr:hover {
+  background: #252525;
+}
+
+[data-theme='dark'] .rm-calculator-box {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+[data-theme='dark'] .rm-form-group label {
+  color: #a8d5ba;
+}
+
+[data-theme='dark'] .rm-form-group input,
+[data-theme='dark'] .rm-form-group select {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #444;
+}
+
+[data-theme='dark'] .rm-form-group input:focus,
+[data-theme='dark'] .rm-form-group select:focus {
+  background: #333;
+  border-color: var(--primary-color);
+}
+
 .rm-calc-btn {
   width: 100%;
   padding: 0.85rem;
@@ -359,6 +416,54 @@
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.6;
+}
+
+.rm-input-box {
+  background: white !important;
+  border: 2px solid #e8f5ee;
+  box-shadow: 0 4px 12px rgba(74, 120, 55, 0.08);
+}
+
+.rm-input-box .rm-result-label {
+  color: #4b7837;
+}
+
+.rm-input-box .rm-result-breakdown {
+  border-top-color: #e8f5ee;
+  color: #888;
+}
+
+.rm-input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.rm-input-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem;
+  background: #f8faf9;
+  border-radius: 12px;
+  border: 1px solid #edf4f0;
+}
+
+.rm-input-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a2a1a;
+}
+
+.rm-input-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #4b7837;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 /* ---- Badge ---- */

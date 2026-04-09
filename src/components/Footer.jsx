@@ -21,19 +21,19 @@ function Footer() {
               Dedicated to empowering farmers with professional, research-backed knowledge to master the science of maize cultivation from seed to silo.
             </p>
             <div className="social-links-footer">
-              <a href="#" className="social-icon-wrapper" aria-label="Instagram">
+              <a href="https://www.instagram.com/ndabarufas/" className="social-icon-wrapper" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
-              <a href="#" className="social-icon-wrapper" aria-label="Facebook">
+              <a href="https://www.facebook.com/ndaba.rufas" className="social-icon-wrapper" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
               </a>
-              <a href="#" className="social-icon-wrapper" aria-label="WhatsApp">
+              <a href="https://wa.me/254792560641" className="social-icon-wrapper" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-7.6 8.38 8.38 0 0 1 3.8.9L21 4.5z"></path></svg>
               </a>
-              <a href="#" className="social-icon-wrapper" aria-label="X">
+              <a href="https://x.com/rufas615510" className="social-icon-wrapper" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="social-svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
               </a>
-              <a href="#" className="social-icon-wrapper" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@rufasmugo7" className="social-icon-wrapper" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="social-svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V12.5c0 2.22-.3 4.27-1.57 6.01-1.39 1.91-3.69 3.12-6.03 3.12-2.34 0-4.63-1.21-6.02-3.12-1.27-1.74-1.57-3.79-1.57-6.01s.3-4.27 1.57-6.01c1.39-1.91 3.69-3.12 6.02-3.12 1.34 0 2.6.43 3.64 1.14V.02z"></path></svg>
               </a>
             </div>

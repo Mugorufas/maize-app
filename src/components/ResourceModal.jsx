@@ -325,7 +325,22 @@ function YieldCalculator() {
     const kgs = totalBags * 90;
     const tonnes = (kgs / 1000).toFixed(1);
 
-    setResult({ totalBags, kgs, tonnes, bagsPerAcre, areaInAcres: areaInAcres.toFixed(2) });
+    // Calculate Inputs
+    const seedsKg = Math.ceil(areaInAcres * 10);
+    const seedPackets = Math.ceil(seedsKg / 2); // 2kg packets
+    const basalBags = Math.ceil(areaInAcres * 1); // 50kg bags
+    const topdressBags = Math.ceil(areaInAcres * 1); // 50kg bags
+
+    setResult({ 
+      totalBags, kgs, tonnes, bagsPerAcre, 
+      areaInAcres: areaInAcres.toFixed(2),
+      inputs: {
+        seedsKg,
+        seedPackets,
+        basalBags,
+        topdressBags
+      }
+    });
   }
 
   function handleChange(e) {
@@ -388,20 +403,41 @@ function YieldCalculator() {
       </div>
 
       <button className="rm-calc-btn" onClick={calculate}>
-        📊 Calculate My Estimated Yield
+        📊 Calculate My Estimated Yield & Inputs
       </button>
 
       {result && (
-        <div className="rm-result-box">
-          <p className="rm-result-label">Estimated Yield</p>
-          <p className="rm-result-value">{result.totalBags}</p>
-          <p className="rm-result-unit">× 90 kg bags = {result.kgs.toLocaleString()} kg ({result.tonnes} tonnes)</p>
-          <p className="rm-result-breakdown">
-            Area: {result.areaInAcres} acres &nbsp;·&nbsp;
-            ~{result.bagsPerAcre} bags/acre &nbsp;·&nbsp;
-            {form.management.charAt(0).toUpperCase() + form.management.slice(1)} management
-          </p>
-        </div>
+        <>
+          <div className="rm-result-box">
+            <p className="rm-result-label">Estimated Yield</p>
+            <p className="rm-result-value">{result.totalBags}</p>
+            <p className="rm-result-unit">× 90kg bags = {result.kgs.toLocaleString()} kg ({result.tonnes} tonnes)</p>
+            <p className="rm-result-breakdown">
+              Area: {result.areaInAcres} acres &nbsp;·&nbsp;
+              ~{result.bagsPerAcre} bags/acre &nbsp;·&nbsp;
+              {form.management.charAt(0).toUpperCase() + form.management.slice(1)} management
+            </p>
+          </div>
+
+          <div className="rm-result-box rm-input-box">
+            <p className="rm-result-label">Estimated Inputs Required</p>
+            <div className="rm-input-grid">
+              <div className="rm-input-item">
+                <span className="rm-input-val">{result.inputs.seedPackets}</span>
+                <span className="rm-input-name">Seed Packets (2kg)</span>
+              </div>
+              <div className="rm-input-item">
+                <span className="rm-input-val">{result.inputs.basalBags}</span>
+                <span className="rm-input-name">Basal Fertilizer (50kg)</span>
+              </div>
+              <div className="rm-input-item">
+                <span className="rm-input-val">{result.inputs.topdressBags}</span>
+                <span className="rm-input-name">Top-dress CAN (50kg)</span>
+              </div>
+            </div>
+            <p className="rm-result-breakdown">Based on standard agronomic rates for {result.areaInAcres} acres.</p>
+          </div>
+        </>
       )}
 
       <div className="rm-tip" style={{ marginTop: '1.2rem' }}>

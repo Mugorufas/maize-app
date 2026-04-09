@@ -7,6 +7,8 @@
   --text-dark: #333333;
   --text-light: #777777;
   --text-white: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-dark); }
@@ -28,4 +30,101 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
 }
 @media (max-width: 768px) {
   .main-wrapper { flex-direction: column; }
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES
+   ========================================================= */
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-dark: #f0f0f0;
+  --text-light: #aaa;
+  --primary-color: #3b5f2b; /* Slightly darker/muted green */
+}
+
+/* Global elements adjusting to dark mode based on classes used in the app */
+[data-theme='dark'] .glass-card,
+[data-theme='dark'] .sidebar,
+[data-theme='dark'] .sidebar-card,
+[data-theme='dark'] .guide-card,
+[data-theme='dark'] .guide-content,
+[data-theme='dark'] .pest-card,
+[data-theme='dark'] .harvest-card,
+[data-theme='dark'] .contact-form,
+[data-theme='dark'] .contact-info,
+[data-theme='dark'] .location-card,
+[data-theme='dark'] .rm-card,
+[data-theme='dark'] .rm-table,
+[data-theme='dark'] .rm-calculator,
+[data-theme='dark'] .resource-modal-body,
+[data-theme='dark'] .info-card {
+  background: var(--card-bg) !important;
+  color: var(--text-dark) !important;
+  border-color: #333 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] .section-title {
+  color: #fff !important;
+  border-bottom-color: #333 !important;
+}
+
+[data-theme='dark'] p,
+[data-theme='dark'] li,
+[data-theme='dark'] .guide-intro {
+  color: var(--text-light) !important;
+}
+
+[data-theme='dark'] .table-header,
+[data-theme='dark'] th {
+  background: #2a2a2a !important;
+  color: #fff !important;
+}
+
+[data-theme='dark'] td,
+[data-theme='dark'] .table-row {
+  border-bottom-color: #333 !important;
+  color: var(--text-dark) !important;
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select {
+  background: #2a2a2a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+
+[data-theme='dark'] .rm-tip {
+  background: #2a2a2a !important;
+  border-left-color: var(--primary-color) !important;
+}
+
+[data-theme='dark'] .nav-item {
+  background: rgba(0, 0, 0, 0.4);
+  color: #ccc;
+}
+
+[data-theme='dark'] .nav-item.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* =========================================================
+   GUIDE LOADING STYLES
+   ========================================================= */
+.guide-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
 }

@@ -121,8 +121,8 @@
   padding: 0.85rem 1rem;
   border-radius: 10px;
   border: 1.5px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.92);
-  color: #222;
+  background: #ffffff !important; /* Force white background */
+  color: #222222 !important; /* Force dark text */
   font-size: 0.95rem;
   font-family: 'Inter', sans-serif;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -267,6 +267,8 @@
   flex-wrap: wrap;
   margin-top: 1.2rem;
 }
+
+
 
 .social-pill {
   display: flex;

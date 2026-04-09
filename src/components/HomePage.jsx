@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import WeatherWidget from './WeatherWidget';
+import { useAuth } from '../context/AuthContext';
+import { MATURITY_TYPES } from './CropCalendar';
 import './HomePage.css';
 
 const HomePage = () => {
+  const { currentUser, userData } = useAuth();
   const sections = [
     {
       id: "planting",
@@ -38,6 +42,32 @@ const HomePage = () => {
     }
   ];
 
+  const getCurrentStage = () => {
+    if (!userData?.farmData?.plantingDate) return null;
+    
+    const start = new Date(userData.farmData.plantingDate);
+    const maturityType = userData.farmData.maturityType || 'medium';
+    const totalDays = MATURITY_TYPES[maturityType]?.duration || 130;
+    const scale = totalDays / 120;
+    
+    const milestones = [
+      { name: 'Emergence', day: 7 * scale, icon: '🌱' },
+      { name: 'V6 (Knee High)', day: 35 * scale, icon: '🌿' },
+      { name: 'V12 Stage', day: 55 * scale, icon: '📏' },
+      { name: 'Tasseling/Silking', day: 70 * scale, icon: '🌽' },
+      { name: 'Grain Filling', day: 90 * scale, icon: '🥛' },
+      { name: 'Maturity', day: totalDays, icon: '🚜' }
+    ];
+
+    const today = new Date();
+    const daysSincePlanting = Math.floor((today - start) / (24 * 60 * 60 * 1000));
+    
+    const stage = [...milestones].reverse().find(m => daysSincePlanting >= m.day);
+    return stage || { name: 'Late Germination', icon: '🌱' };
+  };
+
+  const currentStage = getCurrentStage();
+
   return (
     <div className="home-page-container">
       {/* Hero Section */}
@@ -50,6 +80,50 @@ const HomePage = () => {
             <Link to="/planting" className="btn-primary-home">Start Planting</Link>
             <Link to="/contact" className="btn-secondary-home">Get Expert Advice</Link>
           </div>
+        </div>
+      </section>
+
+       {/* NEW: Intelligence Layer (Weather & Calendar) */}
+      <section className="home-intelligence">
+        <div className="intelligence-grid">
+           {currentUser ? (
+             <div className="glass-card farm-widget">
+               <h3>My Farm Dashboard</h3>
+               <p>Track your crop's journey and get personalized alerts.</p>
+               <div className="farm-widget-status">
+                 {userData?.farmData?.plantingDate ? (
+                   <div className="status-grid">
+                     <div className="mini-status">
+                       <span className="status-label">Planting Date</span>
+                       <span className="status-value">{new Date(userData.farmData.plantingDate).toLocaleDateString()}</span>
+                     </div>
+                     <div className="mini-status">
+                       <span className="status-label">Current Stage</span>
+                       <span className="status-value highlight-stage">
+                         {currentStage?.icon} {currentStage?.name}
+                       </span>
+                     </div>
+                   </div>
+                 ) : (
+                   <p className="status-empty">Ready to start tracking? Set your planting date.</p>
+                 )}
+               </div>
+               <Link to="/calendar" className="btn-dash">Open Calendar →</Link>
+             </div>
+           ) : (
+             <WeatherWidget />
+           )}
+           
+           <div className="intelligence-intro">
+              <h2>Smart Farming Intelligence</h2>
+              <p>We combine your local {currentUser ? 'farm timeline' : 'weather data'} with expert agronomy to give you the best advice for today's conditions.</p>
+              <ul className="intel-list">
+                <li>✅ Optimized Fertilizer Timing</li>
+                <li>✅ Pest Scouting Alerts</li>
+                <li>✅ Irrigation Planning</li>
+              </ul>
+              {!currentUser && <Link to="/signup" className="intel-link">Join 500+ Farmers →</Link>}
+           </div>
         </div>
       </section>
 
