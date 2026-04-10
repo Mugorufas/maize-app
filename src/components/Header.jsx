@@ -26,7 +26,7 @@ function Header({ theme, toggleTheme }) {
         id: d.id,
         type: 'community',
         title: d.data().title,
-        time: d.data().timestamp?.toDate() || new Date(),
+        time: d.data().timestamp?.toDate ? d.data().timestamp.toDate() : (d.data().timestamp || new Date()),
         author: d.data().author
       }));
       updateNotifications(posts);

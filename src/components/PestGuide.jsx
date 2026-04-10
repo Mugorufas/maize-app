@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import './PestGuide.css';
+import AIPestScanner from './common/AIPestScanner';
 
 import fawImg from '../assets/Fall ArmyWorm Header IMG.png';
 import diseasesImg from '../assets/common diseases.png';
@@ -44,6 +45,8 @@ const PestGuide = () => {
         <h1 className="pest-guide-title">{content.heroTitle}</h1>
         <p className="pest-hero-subtitle">{content.heroSubtitle}</p>
       </div>
+
+      <AIPestScanner />
 
       <div className="pest-staggered-grid">
         {content.steps.map((step, index) => (

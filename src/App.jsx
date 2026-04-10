@@ -22,6 +22,8 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import AdminDashboard from './components/admin/AdminDashboard';
 
+import AIChatbot from './components/common/AIChatbot';
+
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
 
@@ -40,6 +42,7 @@ function App() {
         <ScrollToTop />
         <div className="app-container">
           <GlobalAlert />
+          <AIChatbot />
           <Header theme={theme} toggleTheme={toggleTheme} />
           
           <Routes>
