@@ -55,7 +55,7 @@ export const getGeminiChatResponse = async (history, userMessage) => {
   try {
     
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-3-flash-preview", // UPDATED THIS
+      model: "gemini-2.0-flash",
       systemInstruction: CHAT_SYSTEM_PROMPT 
     });
   
@@ -87,7 +87,7 @@ export const getGeminiVisionResponse = async (imageB64) => {
 
   try {
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-3-flash-preview"  // UPDATED THIS
+      model: "gemini-2.0-flash"
     }); 
     
     const imagePart = {
