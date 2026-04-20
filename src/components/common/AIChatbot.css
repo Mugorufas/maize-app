@@ -335,6 +335,9 @@
   font-size: 14.5px;
   line-height: 1.5;
   position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
 }
 
 .message-bubble.user {
@@ -342,6 +345,7 @@
   background: #10b981;
   color: white;
   border-bottom-right-radius: 4px;
+  flex-direction: row-reverse;
 }
 
 .message-bubble.model {
@@ -353,6 +357,7 @@
 
 .bubble-content {
   white-space: pre-wrap;
+  flex: 1;
 }
 
 /* Typing Indicator */
@@ -494,4 +499,14 @@
 
 [data-theme='dark'] .chatbot-guest-notice a {
   color: #fbbf24;
+}
+
+/* Speak button color correction for user (green) bubbles */
+.message-bubble.user .msg-speak-btn {
+  color: rgba(255,255,255,0.75);
+}
+.message-bubble.user .msg-speak-btn.speaking {
+  color: white;
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.12);
 }

@@ -39,7 +39,7 @@ const HarvestGuide = () => {
   if (!content) return <div className="guide-loading">Content coming soon! Please seed guides in Admin Panel.</div>;
 
   return (
-    <div className="harvest-guide-container">
+    <div className="harvest-guide-container" data-readable="true">
       <div className="harvest-hero">
         <h1 className="harvest-guide-title">{content.heroTitle}</h1>
         <p className="harvest-hero-subtitle">{content.heroSubtitle}</p>

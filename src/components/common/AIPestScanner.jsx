@@ -8,6 +8,7 @@ import {
 } from '../../utils/scanHistoryService';
 import { useAuth } from '../../context/AuthContext';
 import './AIPestScanner.css';
+import useTTS from '../../utils/useTTS';
 
 const AIPestScanner = () => {
   const { currentUser } = useAuth();
@@ -22,6 +23,24 @@ const AIPestScanner = () => {
   const [isChatTyping, setIsChatTyping] = useState(false);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+
+  // ─── TTS ─────────────────────────────────────────────────────────────────
+  const { speak, stop, isSpeaking } = useTTS();
+  const [speakingTarget, setSpeakingTarget] = useState(null);
+
+  useEffect(() => {
+    if (!isSpeaking) setSpeakingTarget(null);
+  }, [isSpeaking]);
+
+  const handleSpeak = (text, target) => {
+    if (speakingTarget === target && isSpeaking) {
+      stop();
+      setSpeakingTarget(null);
+    } else {
+      speak(text);
+      setSpeakingTarget(target);
+    }
+  };
 
   const currentScan = scans.find((s) => s.id === currentScanId);
   // `image` is base64 for new uploads, or imageUrl (Storage URL) for loaded scans
@@ -350,7 +369,18 @@ const AIPestScanner = () => {
                 <div className="scanner-result">
                   <div className="result-header">
                     <h4>Diagnosis Report</h4>
-                    <button className="reset-btn" onClick={startNewScan}>New Scan</button>
+                    <div className="result-header-actions">
+                      <button
+                        className={`msg-speak-btn ${speakingTarget === 'diagnosis' && isSpeaking ? 'speaking' : ''}`}
+                        onClick={() => handleSpeak(diagnosisResult, 'diagnosis')}
+                        title={speakingTarget === 'diagnosis' && isSpeaking ? 'Stop reading' : 'Read diagnosis aloud'}
+                        aria-label="Read diagnosis aloud"
+                        style={{ opacity: 1 }}
+                      >
+                        {speakingTarget === 'diagnosis' && isSpeaking ? '⏹' : '🔊'}
+                      </button>
+                      <button className="reset-btn" onClick={startNewScan}>New Scan</button>
+                    </div>
                   </div>
                   <div className="result-body">
                     {diagnosisResult.split('\n').map((line, i) => (
@@ -374,6 +404,16 @@ const AIPestScanner = () => {
                     {chatHistory.map((msg, idx) => (
                       <div key={idx} className={`message-bubble ${msg.role}`}>
                         <div className="bubble-content">{msg.parts[0].text}</div>
+                        {msg.role === 'model' && (
+                          <button
+                            className={`msg-speak-btn ${speakingTarget === `chat-${idx}` && isSpeaking ? 'speaking' : ''}`}
+                            onClick={() => handleSpeak(msg.parts[0].text, `chat-${idx}`)}
+                            title={speakingTarget === `chat-${idx}` && isSpeaking ? 'Stop reading' : 'Read aloud'}
+                            aria-label="Speak this message"
+                          >
+                            {speakingTarget === `chat-${idx}` && isSpeaking ? '⏹' : '🔊'}
+                          </button>
+                        )}
                       </div>
                     ))}
                     {isChatTyping && (

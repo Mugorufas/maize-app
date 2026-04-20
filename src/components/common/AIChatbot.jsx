@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { getGeminiChatResponse } from '../../utils/aiService';
 import { loadChats, saveChat, deleteChat as deleteChatFromDB } from '../../utils/chatHistoryService';
 import { useAuth } from '../../context/AuthContext';
+import useTTS from '../../utils/useTTS';
 import './AIChatbot.css';
 
 const DEFAULT_GREETING = "Hello! I'm your Maize Expert AI. How can I help you today?";
@@ -23,6 +24,13 @@ const AIChatbot = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const messagesEndRef = useRef(null);
+  const { speak, stop, isSpeaking } = useTTS();
+  const [speakingMsgIdx, setSpeakingMsgIdx] = useState(null);
+
+  // Clear speaking indicator when speech ends
+  useEffect(() => {
+    if (!isSpeaking) setSpeakingMsgIdx(null);
+  }, [isSpeaking]);
 
   // ─── Load history ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -81,6 +89,17 @@ const AIChatbot = () => {
 
   const currentChat = chats.find((c) => c.id === currentChatId) || chats[0];
   const messages = currentChat?.messages || [];
+
+  // ─── Speak a message bubble ────────────────────────────────────────────────
+  const handleMsgSpeak = useCallback((text, idx) => {
+    if (speakingMsgIdx === idx && isSpeaking) {
+      stop();
+      setSpeakingMsgIdx(null);
+    } else {
+      speak(text);
+      setSpeakingMsgIdx(idx);
+    }
+  }, [speakingMsgIdx, isSpeaking, speak, stop]);
 
   // ─── Send message ─────────────────────────────────────────────────────────
   const handleSend = async (e) => {
@@ -238,6 +257,16 @@ const AIChatbot = () => {
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`message-bubble ${msg.role}`}>
                       <div className="bubble-content">{msg.parts[0].text}</div>
+                      {msg.role === 'model' && (
+                        <button
+                          className={`msg-speak-btn ${speakingMsgIdx === idx && isSpeaking ? 'speaking' : ''}`}
+                          onClick={() => handleMsgSpeak(msg.parts[0].text, idx)}
+                          title={speakingMsgIdx === idx && isSpeaking ? 'Stop reading' : 'Read aloud'}
+                          aria-label="Speak this message"
+                        >
+                          {speakingMsgIdx === idx && isSpeaking ? '⏹' : '🔊'}
+                        </button>
+                      )}
                     </div>
                   ))}
                   {isTyping && (

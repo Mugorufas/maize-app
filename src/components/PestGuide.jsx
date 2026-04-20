@@ -40,7 +40,7 @@ const PestGuide = () => {
   if (!content) return <div className="guide-loading">Content coming soon! Please seed guides in Admin Panel.</div>;
 
   return (
-    <div className="pest-guide-container">
+    <div className="pest-guide-container" data-readable="true">
       <div className="pest-hero">
         <h1 className="pest-guide-title">{content.heroTitle}</h1>
         <p className="pest-hero-subtitle">{content.heroSubtitle}</p>

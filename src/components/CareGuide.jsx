@@ -39,7 +39,7 @@ const CareGuide = () => {
   if (!content) return <div className="guide-loading">Content coming soon! Please seed guides in Admin Panel.</div>;
 
   return (
-    <div className="care-guide-container">
+    <div className="care-guide-container" data-readable="true">
       <div className="care-hero">
         <h1 className="care-guide-title">{content.heroTitle}</h1>
         <p className="care-hero-subtitle">{content.heroSubtitle}</p>

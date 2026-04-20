@@ -50,7 +50,7 @@ function PlantingGuide() {
   }
 
   return (
-    <div className="planting-guide-container">
+    <div className="planting-guide-container" data-readable="true">
       <h1 className="planting-guide-title">{content.heroTitle}</h1>
       
       <div className="planting-grid">

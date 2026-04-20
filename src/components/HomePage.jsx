@@ -69,7 +69,7 @@ const HomePage = () => {
   const currentStage = getCurrentStage();
 
   return (
-    <div className="home-page-container">
+    <div className="home-page-container" data-readable="true">
       {/* Hero Section */}
       <section className="home-hero">
         <div className="hero-content">

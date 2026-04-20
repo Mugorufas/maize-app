@@ -75,7 +75,7 @@ const ContactPage = () => {
   }
 
   return (
-    <div className="contact-page-container">
+    <div className="contact-page-container" data-readable="true">
       {/* Hero */}
       <div className="contact-hero">
         <h1>Get in Touch</h1>

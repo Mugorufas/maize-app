@@ -191,7 +191,7 @@ export default function CommunityPage() {
   }
 
   return (
-    <div className="community-container">
+    <div className="community-container" data-readable="true">
       <div className="community-header">
         <h1>Community Q&A Board</h1>
         <p>Ask questions, share your farming experiences, and get advice from experts and fellow farmers.</p>

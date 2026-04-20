@@ -1,0 +1,237 @@
+/* ─── Page Reader — Floating TTS Player ──────────────────────────────────── */
+
+.page-reader-wrapper {
+  position: fixed;
+  bottom: 90px; /* sits above the AI chatbot launcher */
+  left: 24px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ─── Launcher Button ─────────────────────────────────────────────────────── */
+.page-reader-launcher {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #1a6b3a, #2d9e5f);
+  color: white;
+  box-shadow: 0 4px 18px rgba(45, 158, 95, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-reader-launcher:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(45, 158, 95, 0.6);
+}
+
+.page-reader-launcher.speaking {
+  background: linear-gradient(135deg, #156b50, #1fa070);
+  animation: pulse-reader 2s ease-in-out infinite;
+}
+
+@keyframes pulse-reader {
+  0%, 100% { box-shadow: 0 4px 18px rgba(45, 158, 95, 0.45); }
+  50%       { box-shadow: 0 4px 28px rgba(45, 158, 95, 0.75); }
+}
+
+.reader-btn-icon {
+  line-height: 1;
+}
+
+/* Tooltip on hover (idle state) */
+.reader-launcher-tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 40, 25, 0.92);
+  color: #7fffb2;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+.page-reader-launcher:hover .reader-launcher-tooltip {
+  opacity: 1;
+}
+
+/* ─── Expanded Player Bar ─────────────────────────────────────────────────── */
+.page-reader-bar {
+  background: rgba(12, 35, 20, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(45, 158, 95, 0.35);
+  border-radius: 16px;
+  padding: 10px 14px;
+  min-width: 260px;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: slideUpBar 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@keyframes slideUpBar {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reader-bar-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reader-page-name {
+  color: #c8ffd4;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Animated Waveform ───────────────────────────────────────────────────── */
+.reader-waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.reader-waveform span {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: #2d9e5f;
+  animation: waveBar 1.1s ease-in-out infinite;
+}
+
+.reader-waveform span:nth-child(1) { height: 6px;  animation-delay: 0s;    }
+.reader-waveform span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+.reader-waveform span:nth-child(3) { height: 18px; animation-delay: 0.3s;  }
+.reader-waveform span:nth-child(4) { height: 12px; animation-delay: 0.45s; }
+.reader-waveform span:nth-child(5) { height: 6px;  animation-delay: 0.6s;  }
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+  50%       { transform: scaleY(1);   opacity: 1;   }
+}
+
+/* ─── Controls Row ────────────────────────────────────────────────────────── */
+.reader-bar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.speed-selector {
+  display: flex;
+  gap: 4px;
+}
+
+.speed-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a0d4b2;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 7px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.speed-btn:hover {
+  background: rgba(45, 158, 95, 0.25);
+  color: #c8ffd4;
+}
+
+.speed-btn.active-speed {
+  background: rgba(45, 158, 95, 0.45);
+  border-color: #2d9e5f;
+  color: #fff;
+}
+
+.reader-stop-btn {
+  background: rgba(220, 60, 60, 0.15);
+  border: 1px solid rgba(220, 60, 60, 0.3);
+  color: #ff8a8a;
+  font-size: 0.85rem;
+  padding: 5px 9px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.reader-stop-btn:hover {
+  background: rgba(220, 60, 60, 0.3);
+}
+
+/* ─── Per-message Speak Button (used in AIChatbot & AIPestScanner) ─────────── */
+.msg-speak-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: inherit;
+  opacity: 0.55;
+  font-size: 0.75rem;
+  padding: 2px 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s, border-color 0.15s;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.message-bubble:hover .msg-speak-btn,
+.msg-speak-btn.speaking {
+  opacity: 1;
+}
+
+.msg-speak-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+.msg-speak-btn.speaking {
+  color: #2d9e5f;
+  border-color: #2d9e5f;
+  background: rgba(45, 158, 95, 0.1);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page-reader-wrapper {
+    bottom: 80px;
+    left: 14px;
+  }
+
+  .page-reader-bar {
+    min-width: 220px;
+  }
+}

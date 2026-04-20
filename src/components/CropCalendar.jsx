@@ -84,7 +84,7 @@ const CropCalendar = () => {
   const currentStage = [...milestones].reverse().find(m => today >= m.date) || { name: 'Pre-planting', advice: 'Prepare your land and select certified seeds.' };
 
   return (
-    <div className="calendar-container">
+    <div className="calendar-container" data-readable="true">
       <div className="calendar-header-glass">
         <h1>My Personalized Crop Calendar</h1>
         <p>Expert-guided milestones based on your specific planting timeline.</p>

@@ -23,6 +23,7 @@ import Signup from './components/auth/Signup';
 import AdminDashboard from './components/admin/AdminDashboard';
 
 import AIChatbot from './components/common/AIChatbot';
+import PageReader from './components/common/PageReader';
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -43,6 +44,7 @@ function App() {
         <div className="app-container">
           <GlobalAlert />
           <AIChatbot />
+          <PageReader />
           <Header theme={theme} toggleTheme={toggleTheme} />
           
           <Routes>
